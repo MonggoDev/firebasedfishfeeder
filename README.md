@@ -6,7 +6,7 @@
 ***FEEDER WEB APP***
 - The Web app is programmed to operate the feeder wirelessly where ever you are.
 
-**FEATURES** -
+**FEATURES** 
 1. Feed Now - to dispense some food from the dispenser it rotates only 1 times.
 2. Set Timer - you can set timer when to dispense food from the dispenser.
 3. Timer List - you can view, add, or remove timer that you set.
