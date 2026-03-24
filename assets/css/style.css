@@ -1,0 +1,205 @@
+:root {
+    /* iOS Fluid Glass Settings */
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-blur: 20px;
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    
+    /* Colors */
+    --primary: #6d5dfc;
+    --white: #FFFFFF;
+    --greyDark: #9baacf;
+    /* Rich gradient background makes the glass pop */
+    --bg-gradient: radial-gradient(circle at top left, #4a4653, #1a181f);
+    
+    --transit: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    font-family: "Poppins", sans-serif;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    width: 100%;
+}
+
+/* Glass Utility Class */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Navbar - Ultra Thin Glass */
+.topnav {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* Centered Vertical Stack */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+    gap: 2.5rem; /* Space between the stacked components */
+}
+
+/* Main Wrapper - Forced to a single column (Stacked) */
+.components {
+    display: grid;
+    grid-template-columns: 1fr; /* This forces the stack on Desktop */
+    width: 100%;
+    max-width: 420px; /* iPhone Pro Max-ish width for that "Handheld" feel on desktop */
+    gap: 2.5rem;
+    padding-bottom: 5rem;
+}
+
+/* Glass Elements */
+.container3, .clock, .btn, .icon__add {
+    width: 100%;
+    border-radius: 2.5rem;
+    transition: var(--transit);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Component */
+.container3 {
+    height: 12rem;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+/* The Clock - Circular Glass */
+.clock {
+    height: 20rem;
+    width: 20rem;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid var(--glass-border);
+}
+
+.clock .hand {
+    position: absolute;
+    transform-origin: bottom;
+    bottom: 50%;
+    border-radius: 10px;
+}
+
+.clock .hours { width: 0.5rem; height: 5rem; background: var(--white); }
+.clock .minutes { width: 0.4rem; height: 7.5rem; background: var(--greyDark); opacity: 0.7; }
+.clock .seconds { width: 0.2rem; height: 8.5rem; background: #ff3b30; } /* iOS Red */
+
+/* Buttons */
+.btn {
+    height: 6rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+    font-weight: 500;
+    border: 1px solid var(--glass-border);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.btn__primary {
+    background: rgba(109, 93, 252, 0.25);
+    border-color: rgba(109, 93, 252, 0.4);
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.btn:active {
+    transform: scale(0.97);
+    filter: brightness(0.9);
+}
+
+/* Floating Icon Button */
+.icon {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.icon__add {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    font-size: 3rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+}
+
+/* Animation for "Fluid" feel */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+.clock {
+    animation: float 5s ease-in-out infinite;
+}
+
+.btn {
+    animation: float 5s ease-in-out infinite;
+}
+
+.icon {
+    animation: float 5s ease-in-out infinite;
+}
+
+/* Responsiveness for Mobile */
+@media (max-width: 500px) {
+    .components {
+        max-width: 100%;
+    }
+    
+    .clock {
+        width: 18rem;
+        height: 18rem;
+    }
+}
+
+.components2 {
+    display:none;
+}
+
+#toggle:checked ~ .components2 {
+    display: none;
+}
+
+#toggle:checked ~ .components2 {
+    display: grid;
+}
